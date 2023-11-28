@@ -120,38 +120,45 @@ class NoteApp extends React.Component {
               </div>
               {activeTab === 'active' && (
                 <div className="flex flex-wrap justify-center gap-5 mt-10">
-                  {activeNotes.map((note) => (
-                    <div key={note.id} className="w-full lg:w-5/12 border border-black p-5 rounded-md">
-                      <h2>{note.title}</h2>
-                      <p className="text-[#a3a3a3]">{this.changeDateFormat(note.createdAt)}</p>
-                      <h4>{note.body}</h4>
-                      <div className="flex gap-4 justify-start mt-3">
-                        <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.onDeleteNoteHandler(note.id)}>Hapus</button>
-                        <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.archiveNoteHandler(note.id)}>Arsipkan</button>
+                  {activeNotes.length > 0 ? (
+                    activeNotes.map((note) => (
+                      <div key={note.id} className="w-full lg:w-5/12 border border-black p-5 rounded-md">
+                        <h2>{note.title}</h2>
+                        <p className="text-[#a3a3a3]">{this.changeDateFormat(note.createdAt)}</p>
+                        <h4>{note.body}</h4>
+                        <div className="flex gap-4 justify-start mt-3">
+                          <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.onDeleteNoteHandler(note.id)}>Hapus</button>
+                          <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.archiveNoteHandler(note.id)}>Arsipkan</button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <p className="text-center text-[#bebebe]">Tidak ada catatan.</p>
+                  )}
                 </div>
               )}
               {activeTab === 'archive' && (
                 <div className="flex flex-wrap justify-center gap-5 mt-10">
-                  {archivedNotes.map((note) => (
-                    <div key={note.id} className="w-full lg:w-5/12 border border-black p-5">
-                      <h2>{note.title}</h2>
-                      <p className="text-[#a3a3a3]">{this.changeDateFormat(note.createdAt)}</p>
-                      <h4>{note.body}</h4>
-                      <div className="flex gap-4 justify-start mt-3">
-                        <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.unarchiveNoteHandler(note.id)}>Active</button>
-                        <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.onDeleteNoteHandler(note.id)}>Hapus</button>
+                  {archivedNotes.length > 0 ? (
+                    archivedNotes.map((note) => (
+                      <div key={note.id} className="w-full lg:w-5/12 border border-black p-5">
+                        <h2>{note.title}</h2>
+                        <p className="text-[#a3a3a3]">{this.changeDateFormat(note.createdAt)}</p>
+                        <h4>{note.body}</h4>
+                        <div className="flex gap-4 justify-start mt-3">
+                          <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.unarchiveNoteHandler(note.id)}>Active</button>
+                          <button className="px-2 py-1 border border-black rounded-md hover:bg-green-400 hover:text-white" onClick={() => this.onDeleteNoteHandler(note.id)}>Hapus</button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <p className="text-center text-[#bebebe]">Tidak ada catatan.</p>
+                  )}
                 </div>
               )}
             </div>
           </div>
         </section>
-        
       </main>
     )
   }
